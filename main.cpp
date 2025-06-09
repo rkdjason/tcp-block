@@ -221,7 +221,7 @@ void backward_fin(int raw_sock, const char* dev, const EthHdr* org_eth, const Ip
 
     struct sockaddr_in sin;
     sin.sin_family = AF_INET;
-    sin.sin_addr.s_addr = ip_hdr->dst_ip_;
+    sin.sin_addr.s_addr = org_ip->src_ip_;
 
     if (sendto(raw_sock, packet + sizeof(EthHdr), packet_len - sizeof(EthHdr), 0, (struct sockaddr*)&sin, sizeof(sin)) == -1) {
         printf("Error: failed to send FIN packet\n");
